@@ -31,7 +31,7 @@ async function fetchMovie(){
                 movie.setAttribute('data-id',moviesList[i].imdbID)
                 movie.innerHTML = `
                 <div class="movieDetail" data-id=${moviesList[i].imdbID}> 
-                <img src=" ${moviesList[i].Poster=="N/A"? "noimage.png":moviesList[i].Poster}" class="poster-thumbnail">
+                <img src=" ${moviesList[i].Poster=="N/A"? "src/noimage.png":moviesList[i].Poster}" class="poster-thumbnail">
                 <h2 data-id="${moviesList[i].imdbID}"> ${moviesList[i].Title} </h2>
                 <button class="fav-btn" data-id=${moviesList[i].imdbID}>Add to Favorite</button>
                 </div>

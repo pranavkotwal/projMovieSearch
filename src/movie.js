@@ -1,5 +1,7 @@
-async function loadDetails(){
+// calls api again to get movie details and renders 
 
+async function loadDetails(){
+    // Get id from session storage 
     const imdbi = sessionStorage.getItem('movieId')
 
 
