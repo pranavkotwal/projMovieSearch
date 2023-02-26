@@ -36,11 +36,12 @@ async function fetchMovie(){
                 <button class="fav-btn" data-id=${moviesList[i].imdbID}>Add to Favorite</button>
                 </div>
                 `
-                
+                // Append movie item to search results
                 searchResults.appendChild(movie)
                 
                 console.log(moviesList)
                } 
+               // calling getId and get Favorites for when the search results are rendered 
                getID()
                getFavorites()
                  // moviesList[i]
@@ -82,10 +83,10 @@ function getID() {
     if (isFavoriteButton) {
       return; 
     }
-
+    // Return early if the movie detail element doesn't have a data-id attribute
     const movieId = movieDetail.getAttribute('data-id'); // Get the movie ID
     if (!movieId) {
-      return; // Return early if the movie detail element doesn't have a data-id attribute
+      return; 
     }
 
     sessionStorage.setItem('movieId', movieId); // Store the movie ID in session storage
@@ -95,7 +96,7 @@ function getID() {
 
 
 // "tt2582782"
-// when clicked on "fav button" it clones the parent element and removes the button 
+// When clicked on "fav button" it clones the parent element and removes the button 
 
 function getFavorites() {
   const favButtons = document.querySelectorAll('.fav-btn');
