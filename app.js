@@ -41,7 +41,7 @@ async function fetchMovie(){
                 
                 console.log(moviesList)
                } 
-               getId()
+               getID()
                getFavorites()
                  // moviesList[i]
         }else{
@@ -65,20 +65,32 @@ searchInput.addEventListener('keyup',fetchMovie)
 // if the movie exists clicking on it will save it data-id attribute
 let movieId;
 
-function  getId(){
-    let movie = document.getElementsByTagName('li');
-    if(movie)
-    {
-    document.addEventListener('click',(e)=>{
-        if(e.target.className == "movieDetail"){ 
-            // get the data-id
-          movieId = e.target.getAttribute('data-id')
-          //store the data-id in session storage
-          sessionStorage.setItem("movieId",movieId)
-          window.location.href = "src/Movie.html"
-        }
-    })
-}
+function getID() {
+  const movieList = document.getElementsByTagName('ul')[0]; 
+  if (!movieList) {
+    return; 
+  }
+  
+  movieList.addEventListener('click', (e) => {
+    const movieDetail = e.target.closest('.movieDetail'); // Find the closest ancestor element with class "movieDetail"
+    if (!movieDetail) {
+      return; 
+    }
+    // Check if the clicked element or its preveious element has fav btn class
+    // Return early if the clicked clicked on "fav btn"
+    const isFavoriteButton = e.target.closest('.fav-btn'); 
+    if (isFavoriteButton) {
+      return; 
+    }
+
+    const movieId = movieDetail.getAttribute('data-id'); // Get the movie ID
+    if (!movieId) {
+      return; // Return early if the movie detail element doesn't have a data-id attribute
+    }
+
+    sessionStorage.setItem('movieId', movieId); // Store the movie ID in session storage
+    window.location.href = 'src/Movie.html'; // Redirect the user to the movie detail page
+  });
 }
 
 
